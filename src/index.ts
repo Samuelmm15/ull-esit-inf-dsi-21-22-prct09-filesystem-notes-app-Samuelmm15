@@ -1,7 +1,3 @@
-console.log('Starting');
-
-setTimeout(() => {
-  console.log('Two seconds have passed');
-}, 2000);
-
-console.log('Finishing');
+export function add(a: number, b: number) {
+  return a + b;
+}
