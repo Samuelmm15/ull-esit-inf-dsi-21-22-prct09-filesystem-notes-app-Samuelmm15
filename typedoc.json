@@ -1,6 +1,8 @@
 {
     "entryPoints": [
-      "./src/index.ts"
+      "./src/Modification/templateMethod.ts",
+      "./src/Modification/addOperation.ts.ts",
+      "./src/Modification/subOperation.ts.ts"
     ],
     "out": "./docs"
   }
