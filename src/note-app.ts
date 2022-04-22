@@ -131,8 +131,8 @@ yargs.command({
   handler(argv) {
     if ((typeof argv.user === 'string') &&
       (typeof argv.title === 'string')) {
+      let flag: boolean = true;
       fs.readdir(`src/notes/${argv.user}`, (err, data) => {
-        let flag: boolean = true;
         data.forEach((item) => {
           if (item === `${argv.title}.json`) {
             flag = true;
@@ -148,10 +148,10 @@ yargs.command({
             flag = false;
           }
         });
-        if (flag !== true) {
-          console.log(chalk.red('The file that was trying to read does not exists'));
-        }
       });
+      if (flag !== true) {
+        console.log(chalk.red('The file that was trying to read does not exists'));
+      }
     }
   },
 });
