@@ -1,12 +1,9 @@
-/* eslint-disable no-unused-vars */
 import yargs from 'yargs';
 import {Note} from './note';
 import chalk from 'chalk';
 import * as fs from 'fs';
 
-// type Colour = 'red' | 'green' | 'blue' | 'yellow';
-
-yargs.command({ // Este Funciona
+yargs.command({
   command: 'add',
   describe: 'Add a new note',
   builder: {
@@ -66,7 +63,7 @@ yargs.command({ // Este Funciona
   },
 });
 
-yargs.command({ // Este funciona pero falta por colores
+yargs.command({
   command: 'list',
   describe: 'List user title',
   builder: {
@@ -116,7 +113,7 @@ yargs.command({ // Este funciona pero falta por colores
   },
 });
 
-yargs.command({ // ESTE FUNCIONA
+yargs.command({
   command: 'read',
   describe: 'Read user title',
   builder: {
@@ -159,7 +156,7 @@ yargs.command({ // ESTE FUNCIONA
   },
 });
 
-yargs.command({ // ESTE FUNCIONA
+yargs.command({
   command: 'remove',
   describe: 'Remove user Title',
   builer: {
@@ -188,7 +185,7 @@ yargs.command({ // ESTE FUNCIONA
   },
 });
 
-yargs.command({ // ESTO FUNCIONA
+yargs.command({
   command: 'modify',
   describe: 'Modify an exist Title',
   builder: {
@@ -246,6 +243,39 @@ yargs.command({ // ESTO FUNCIONA
   },
 });
 
-// FALTA COMANDO PARA AÑADIR NUEVOS USUARIOS
+yargs.command({
+  command: 'addUser',
+  describe: 'Adds a new user',
+  builder: {
+    user: {
+      describe: 'User Name',
+      demandOption: true,
+      type: 'string',
+    },
+  },
+  handler(argv) {
+    if (typeof argv.user === 'string') {
+      fs.readdir(`src/notes`, (err, data) => {
+        if (err) {
+          console.log(chalk.red('There must be a problem'));
+        } else {
+          data.forEach((item) => {
+            if (item === argv.user) {
+              console.log(chalk.red('The user that is going to add already exists'));
+            } else {
+              fs.mkdir(`src/notes/${argv.user}`, (err) => {
+                if (err) {
+                  console.log(chalk.red('There must be a problem to create the user'));
+                } else {
+                  console.log(chalk.green('The user was succefully created'));
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+  },
+});
 
 yargs.parse();
