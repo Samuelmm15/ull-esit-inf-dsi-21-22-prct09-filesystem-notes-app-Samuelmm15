@@ -32,7 +32,7 @@ export class NoteCollection {
   modifyNote(noteTitle: string, newBody: string): void {
     this.noteList.forEach((item) => {
       if (item.getTitle() === noteTitle) {
-        writeFile(`src/notes/${item.getTitle()}.txt`, newBody, (err) => {
+        writeFile(`src/notes/${item.getUserName()}/${item.getTitle()}.txt`, newBody, (err) => {
           if (err) {
             console.log(chalk.red('There must be a problem to write the file'));
           } else {
@@ -47,7 +47,7 @@ export class NoteCollection {
   readXNote(noteTiTle: string): void { // FALTA IMPRIMIR CADA TÍTULO CON SU RESPECTIVO COLOR
     this.noteList.forEach((item) => {
       if (item.getTitle() === noteTiTle) {
-        readFile(`src/notes/${item.getTitle()}.txt`, (err, data) => {
+        readFile(`src/notes/${item.getUserName()}/${item.getTitle()}.txt`, (err, data) => {
           if (err) {
             console.log(chalk.red('There must be a problem to read'));
           } else {
