@@ -41,7 +41,7 @@ yargs.command({ // Este Funciona
         if (err) {
           console.log(chalk.red('There must be a problem'));
         } else {
-          let flag: boolean = true;
+          let flag: boolean = false;
           data.forEach((item) => {
             if (item === `${argv.title}.json`) {
               flag = true;
@@ -49,7 +49,7 @@ yargs.command({ // Este Funciona
               flag = false;
             }
           });
-          if (flag === true) {
+          if (flag !== false) {
             console.log(chalk.red('The file that is trying to add already exists'));
           } else {
             fs.writeFile(`src/notes/${argv.user}/${argv.title}.json`, JSON.stringify(object), (err) => {
@@ -80,11 +80,36 @@ yargs.command({ // Este funciona pero falta por colores
     if (typeof argv.user === 'string') {
       fs.readdir(`src/notes/${argv.user}`, (err, data) => {
         if (err) {
-          console.log('There must be a problem');
+          console.log(chalk.red('There must be a problem'));
         } else {
-          data.forEach((item) => {
-            console.log(item);
-          });
+          if (data.length > 0) {
+            console.log(chalk.grey('Files List: '));
+            data.forEach((item) => {
+              fs.readFile(`src/notes/${argv.user}/${item}`, (err, readData) => {
+                if (err) {
+                  console.log(chalk.red('There must be a problem to read'));
+                } else {
+                  const object = JSON.parse(readData.toString());
+                  switch (object.colour) {
+                    case 'red':
+                      console.log(chalk.red(item));
+                      break;
+                    case 'green':
+                      console.log(chalk.green(item));
+                      break;
+                    case 'blue':
+                      console.log(chalk.blue(item));
+                      break;
+                    case 'yellow':
+                      console.log(chalk.yellow(item));
+                      break;
+                  }
+                }
+              });
+            });
+          } else {
+            console.log(chalk.red('There is no element in the list'));
+          }
         }
       });
     }
