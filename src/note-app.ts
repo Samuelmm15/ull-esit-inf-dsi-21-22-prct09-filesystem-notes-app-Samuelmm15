@@ -3,9 +3,14 @@ import {Note} from './note';
 import chalk from 'chalk';
 import * as fs from 'fs';
 
+/**
+ * This is the command to add new Notes to the User directory,
+ * if a existing note has the same name that a new one, the command send an
+ * error message
+ */
 yargs.command({
   command: 'add',
-  describe: 'Add a new note',
+  describe: 'Add a new note', // EXISTE UN ERROR EN ESTE PUNTO
   builder: {
     title: {
       describe: 'Note title',
@@ -63,6 +68,10 @@ yargs.command({
   },
 });
 
+/**
+ * This command list the content of the user directory.
+ * The list has the colour of the differents notes.
+ */
 yargs.command({
   command: 'list',
   describe: 'List user title',
@@ -113,6 +122,10 @@ yargs.command({
   },
 });
 
+/**
+ * This command reads the content of an specific note. If a note does not
+ * exists, the command send an error message.
+ */
 yargs.command({
   command: 'read',
   describe: 'Read user title',
@@ -156,6 +169,9 @@ yargs.command({
   },
 });
 
+/**
+ * This command remove an specific note of a user directory.
+ */
 yargs.command({
   command: 'remove',
   describe: 'Remove user Title',
@@ -185,6 +201,9 @@ yargs.command({
   },
 });
 
+/**
+ * This command modify the content of an specific user note.
+ */
 yargs.command({
   command: 'modify',
   describe: 'Modify an exist Title',
@@ -243,6 +262,9 @@ yargs.command({
   },
 });
 
+/**
+ * This command adds new users or user directorys.
+ */
 yargs.command({
   command: 'addUser',
   describe: 'Adds a new user',
@@ -275,6 +297,26 @@ yargs.command({
         }
       });
     }
+  },
+});
+
+/**
+ * This command lists the users directorys.
+ */
+yargs.command({
+  command: 'userList',
+  describe: 'List the user directorys',
+  handler() {
+    fs.readdir(`src/notes`, (err, data) => {
+      if (err) {
+        console.log(chalk.red('There must be a problem'));
+      } else {
+        console.log(chalk.grey('User directory list:'));
+        data.forEach((item) => {
+          console.log(item);
+        });
+      }
+    });
   },
 });
 
