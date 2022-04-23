@@ -38,30 +38,35 @@ yargs.command({
       (typeof argv.user === 'string') &&
         (typeof argv.body === 'string') &&
           (typeof argv.colour === 'string')) {
-      const object = new Note(argv.title, argv.body, argv.colour, argv.user);
-      fs.readdir(`src/notes/${argv.user}`, (err, data) => {
-        if (err) {
-          console.log(chalk.red('There must be a problem'));
-        } else {
-          let flag: number = 1;
-          data.forEach((item) => {
-            if (item === `${argv.title}.json`) {
-              flag = 0;
-            }
-          });
-          if (flag === 0) {
-            console.log(chalk.red('The file that is trying to add already exists'));
+      if ((argv.colour === 'red') || (argv.colour === 'blue') || (argv.colour === 'yellow') || (argv.colour === 'green')) {
+        const object = new Note(argv.title, argv.body, argv.colour, argv.user);
+        fs.readdir(`src/notes/${argv.user}`, (err, data) => {
+          if (err) {
+            console.log(chalk.red('There must be a problem'));
           } else {
-            fs.writeFile(`src/notes/${argv.user}/${argv.title}.json`, JSON.stringify(object), (err) => {
-              if (err) {
-                console.log(chalk.red('There must be a problem to write the file'));
-              } else {
-                console.log(chalk.green('The file was succesfully created'));
+            let flag: number = 1;
+            data.forEach((item) => {
+              if (item === `${argv.title}.json`) {
+                flag = 0;
               }
             });
+            if (flag === 0) {
+              console.log(chalk.red('The file that is trying to add already exists'));
+            } else {
+              fs.writeFile(`src/notes/${argv.user}/${argv.title}.json`, JSON.stringify(object), (err) => {
+                if (err) {
+                  console.log(chalk.red('There must be a problem to write the file'));
+                } else {
+                  console.log(chalk.green('The file was succesfully created'));
+                }
+              });
+            }
           }
-        }
-      });
+        });
+      } else {
+        console.log(chalk.red('There must be a problem with the valid colours.'));
+        console.log(chalk.green('The valid colours are: red, blue, yellow, green.'));
+      }
     }
   },
 });
