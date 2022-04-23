@@ -10,7 +10,7 @@ import * as fs from 'fs';
  */
 yargs.command({
   command: 'add',
-  describe: 'Add a new note', // EXISTE UN ERROR EN ESTE PUNTO
+  describe: 'Add a new note',
   builder: {
     title: {
       describe: 'Note title',
@@ -43,15 +43,13 @@ yargs.command({
         if (err) {
           console.log(chalk.red('There must be a problem'));
         } else {
-          let flag: boolean = false;
+          let flag: number = 1;
           data.forEach((item) => {
             if (item === `${argv.title}.json`) {
-              flag = true;
-            } else {
-              flag = false;
+              flag = 0;
             }
           });
-          if (flag !== false) {
+          if (flag === 0) {
             console.log(chalk.red('The file that is trying to add already exists'));
           } else {
             fs.writeFile(`src/notes/${argv.user}/${argv.title}.json`, JSON.stringify(object), (err) => {
@@ -144,11 +142,11 @@ yargs.command({
   handler(argv) {
     if ((typeof argv.user === 'string') &&
       (typeof argv.title === 'string')) {
-      let flag: boolean = true;
       fs.readdir(`src/notes/${argv.user}`, (err, data) => {
+        let flag: number = 1;
         data.forEach((item) => {
           if (item === `${argv.title}.json`) {
-            flag = true;
+            flag = 0;
             fs.readFile(`src/notes/${argv.user}/${argv.title}.json`, (err, readData) => {
               if (err) {
                 console.log(chalk.red('There must be a problem to read'));
@@ -157,14 +155,12 @@ yargs.command({
                 console.log(object.body);
               }
             });
-          } else {
-            flag = false;
           }
         });
+        if (flag === 1) {
+          console.log(chalk.red('The file that was trying to read does not exists'));
+        }
       });
-      if (flag !== true) {
-        console.log(chalk.red('The file that was trying to read does not exists'));
-      }
     }
   },
 });
@@ -226,14 +222,14 @@ yargs.command({
   },
   handler(argv) {
     if ((typeof argv.user === 'string') && (typeof argv.title === 'string') && (typeof argv.body === 'string')) {
-      let flag: boolean = true;
+      let flag: number = 1;
       fs.readdir(`src/notes/${argv.user}`, (err, data) => {
         if (err) {
           console.log(chalk.red('There must be a problem'));
         } else {
           data.forEach((item) => {
             if (item === `${argv.title}.json`) {
-              flag = true;
+              flag = 0;
               fs.readFile(`src/notes/${argv.user}/${argv.title}.json`, (err, readData) => {
                 if (err) {
                   console.log(chalk.red('There must be a problem to read'));
@@ -249,11 +245,9 @@ yargs.command({
                   });
                 }
               });
-            } else {
-              flag = false;
             }
           });
-          if (flag !== true) {
+          if (flag === 1) {
             console.log(chalk.red('The file does not exists'));
           }
         }
