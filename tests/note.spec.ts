@@ -2,7 +2,7 @@ import 'mocha';
 import {expect} from 'chai';
 import {Note} from '../src/note';
 
-const test: Note = new Note('Test', 'This is a test', 'red');
+const test: Note = new Note('Test', 'This is a test', 'red', 'Samuel');
 describe('Class Note tests', () => {
   it('Note getTitle() return Test', () => {
     expect(test.getTitle()).to.be.equal('Test');
@@ -13,9 +13,12 @@ describe('Class Note tests', () => {
   it('Note getColour() return red', () => {
     expect(test.getColour()).to.be.equal('red');
   });
+  it('Note getUserName() return Samuel', () => {
+    expect(test.getUserName()).to.be.equal('Samuel');
+  });
 });
 
-const test1: Note = new Note('Test1', 'This is the test1', 'yellow');
+const test1: Note = new Note('Test1', 'This is the test1', 'yellow', 'Pepe');
 describe('Class Note tests', () => {
   it('Note1 getTitle() return Test1', () => {
     expect(test1.getTitle()).to.be.equal('Test1');
@@ -25,5 +28,8 @@ describe('Class Note tests', () => {
   }),
   it('Note1 getColour() return yellow', () => {
     expect(test1.getColour()).to.be.equal('yellow');
+  });
+  it('Note1 getUserName() return Samuel', () => {
+    expect(test1.getUserName()).to.be.equal('Pepe');
   });
 });

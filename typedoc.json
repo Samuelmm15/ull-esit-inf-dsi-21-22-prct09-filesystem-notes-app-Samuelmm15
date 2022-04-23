@@ -1,8 +1,10 @@
 {
     "entryPoints": [
       "./src/Modification/templateMethod.ts",
-      "./src/Modification/addOperation.ts.ts",
-      "./src/Modification/subOperation.ts.ts"
+      "./src/Modification/addOperation.ts",
+      "./src/Modification/subOperation.ts",
+      "./src/note-app.ts",
+      "./src/note.ts"
     ],
     "out": "./docs"
   }
