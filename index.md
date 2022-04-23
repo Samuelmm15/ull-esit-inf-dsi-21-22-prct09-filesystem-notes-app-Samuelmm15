@@ -430,7 +430,124 @@ yargs.command({
 
 ## // Funcionamiento de la aplicación de notas <a name="id9"></a>
 
-[img]
+- Prueba de menú de ayuda para cualquier comando del programa:
+
+```
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js add
+note-app.js add
+
+Add a new note
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+  --title    Note title                                      [string] [required]
+  --user     User Name                                       [string] [required]
+  --body     Body Note                                       [string] [required]
+  --colour   Colour Note                                     [string] [required]
+
+Missing required arguments: title, user, body, colour
+```
+
+- Prueba de añadir una nueva nota:
+
+```
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js add --user="Samuel" --title="example" --body="This is a test" --colour="yellow"
+The file was succesfully created
+```
+
+- Prueba de añadir una nota existente:
+
+```
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js add --user="Samuel" --title="example" --body="This is a test" --colour="yellow"
+The file that is trying to add already exists
+```
+
+- Prueba de añadir un color que no esté permitido:
+
+```
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js add --user="Samuel" --title="example1" --body="This is a test" --colour="grey"
+There must be a problem with the valid colours.
+The valid colours are: red, blue, yellow, green.
+```
+
+- Prueba del listado de notas:
+
+```
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js list --user="Samuel"
+Files List: 
+example.json
+example1.json
+```
+
+- Prueba del listado de un usuario que no tenga añadida ninguna nota:
+
+```
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js list --user="Pepe"
+There is no element in the list
+```
+
+- Prueba de lectura de una nota específica:
+
+```
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js read --user="Samuel" --title="example"
+This is a test
+```
+
+- Prueba de lectura de una nota que no existe:
+
+```
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js read --user="Samuel" --title="exampl1"
+The file that was trying to read does not exists
+```
+
+- Prueba de modificación de una nota en concreto:
+
+```
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js read --user="Samuel" --title="example"
+This is a test
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js read --user="Samuel" --title="exampl1"
+The file that was trying to read does not exists
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js modify --user="Samuel" --title="example" --body="This is a test of modify a specific note"
+The file was succesfully Modificated
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js read --user="Samuel" --title="example"
+This is a test of modify a specific note
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ 
+```
+
+- Prueba de eliminación de una nota específica:
+
+```
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js list --user="Samuel"
+Files List: 
+example.json
+example1.json
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js remove --user="Samuel" --title="example1"
+The note was succefully removed
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js list --user="Samuel"
+Files List: 
+example.json
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ 
+```
+
+- Prueba de los comandos adicionales:
+
+```
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js userList
+User directory list:
+Juan
+Pepe
+Samuel
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js addUser --user="Eduardo"
+The user was succefully created
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js userList       
+User directory list:
+Eduardo
+Juan
+Pepe
+Samuel
+samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ 
+```
 
 ## // Testeo de los objetos de tipo `Note` <a name="id10"></a>
 
