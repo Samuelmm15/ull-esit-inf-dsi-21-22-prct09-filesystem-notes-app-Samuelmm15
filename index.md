@@ -449,12 +449,16 @@ Options:
 Missing required arguments: title, user, body, colour
 ```
 
+![test1](https://user-images.githubusercontent.com/72341631/164894249-5ba8ef78-1701-425f-b603-b9680f9a943d.png)
+
 - Prueba de añadir una nueva nota:
 
 ```
 samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js add --user="Samuel" --title="example" --body="This is a test" --colour="yellow"
 The file was succesfully created
 ```
+
+![test2](https://user-images.githubusercontent.com/72341631/164894257-59e76a92-c6cd-4adb-bb28-a96c3787ada5.png)
 
 - Prueba de añadir una nota existente:
 
@@ -463,6 +467,8 @@ samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesyste
 The file that is trying to add already exists
 ```
 
+![test3](https://user-images.githubusercontent.com/72341631/164894275-9758fcc6-5b28-4abf-b93b-b43d86bf53f5.png)
+
 - Prueba de añadir un color que no esté permitido:
 
 ```
@@ -470,6 +476,8 @@ samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesyste
 There must be a problem with the valid colours.
 The valid colours are: red, blue, yellow, green.
 ```
+
+![test4](https://user-images.githubusercontent.com/72341631/164894289-7357b7f3-76a2-43d3-b7d8-02a4822086ca.png)
 
 - Prueba del listado de notas:
 
@@ -480,12 +488,16 @@ example.json
 example1.json
 ```
 
+![test-list1](https://user-images.githubusercontent.com/72341631/164894297-53bd8ea3-2026-4522-8879-dbcbd1249de8.png)
+
 - Prueba del listado de un usuario que no tenga añadida ninguna nota:
 
 ```
 samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js list --user="Pepe"
 There is no element in the list
 ```
+
+![test-list2](https://user-images.githubusercontent.com/72341631/164894299-62bbc688-07a6-48d8-ab99-eb052d1f42fd.png)
 
 - Prueba de lectura de una nota específica:
 
@@ -494,12 +506,16 @@ samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesyste
 This is a test
 ```
 
+![test-read1](https://user-images.githubusercontent.com/72341631/164894304-c57d9c39-e77f-4797-89ba-5df4a86c084e.png)
+
 - Prueba de lectura de una nota que no existe:
 
 ```
 samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ node dist/note-app.js read --user="Samuel" --title="exampl1"
 The file that was trying to read does not exists
 ```
+
+![test-read2](https://user-images.githubusercontent.com/72341631/164894313-bb8215b4-26df-45bb-ac8a-3308cb580175.png)
 
 - Prueba de modificación de una nota en concreto:
 
@@ -515,6 +531,8 @@ This is a test of modify a specific note
 samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ 
 ```
 
+![test-modify](https://user-images.githubusercontent.com/72341631/164894322-37e10396-3061-4300-a92f-1d66e773c54a.png)
+
 - Prueba de eliminación de una nota específica:
 
 ```
@@ -529,6 +547,8 @@ Files List:
 example.json
 samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ 
 ```
+
+![test-remove](https://user-images.githubusercontent.com/72341631/164894335-3c5e59d3-5d01-4709-8393-c241e22a33a5.png)
 
 - Prueba de los comandos adicionales:
 
@@ -548,6 +568,8 @@ Pepe
 Samuel
 samu@Samuel:/mnt/c/Users/samue/Documents/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-Samuelmm15$ 
 ```
+
+![aditional-tests](https://user-images.githubusercontent.com/72341631/164894347-bf5ce26d-3239-4e3c-807c-6d69c8ead878.png)
 
 ## // Testeo de los objetos de tipo `Note` <a name="id10"></a>
 
@@ -588,7 +610,8 @@ describe('Class Note tests', () => {
 ```
 
 Como se puede observar en la imagen adjunta a continuación, el testeo y cubrimiento de código resulta:
-[img]
+
+![coveralls-test](https://user-images.githubusercontent.com/72341631/164894355-d488a48f-f8fa-4f46-a0c1-22a33cf5b107.png)
 
 ## // Conclusión <a name="id11"></a>
 
