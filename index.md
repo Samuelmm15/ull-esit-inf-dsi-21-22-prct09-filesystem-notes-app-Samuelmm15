@@ -294,8 +294,7 @@ yargs.command({
 
 ### /// Modify a specific Note <a name="id7"></a>
 
-Para la modificación de una nota que se encuentra dentro de la lista de notas de un usuarios. Para comenzar, es necesario 
-comprobar si el fichero que desea modificar existe, para ello, se recorre el directorio del usuario comprobando si el 
+Para comenzar, es necesario comprobar si el fichero que desea modificar existe, para ello, se recorre el directorio del usuario comprobando si el 
 título ha sido añadido anteriormente, si no ocurre esto, se lanza un mensaje de error por consola y, se debe de añadir la 
 nota mediante el comando **add**. Si se produce que la nota ha sido añadida anteriormente, se obtiene el contenido previo 
 a la modificación de la nota, y, se modifica únicamente el contenido del **body** de la nota. Una vez se tiene esto, se 
